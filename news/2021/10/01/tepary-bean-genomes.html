@@ -14,21 +14,21 @@
   <meta name="keywords" content="news">
   <link rel="canonical" href="/news/2021/10/01/tepary-bean-genomes.html">
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for LIS: Legume Information System" href="/feed.xml" />
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-49655154-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-49655154-1');
+</script>
+
+  
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/css/uikit.min.css" type="text/css" />
-  <link rel="stylesheet" href="/assets/css/theme.css" type="text/css" />
-
-  <!-- TODO: these theme overrides should be added at compile time, i.e. we shouldn't be overriding our own theme! -->
-  <style type="text/css">
-    .tm-lower-navbar .uk-navbar-nav > li > a, .tm-lower-navbar .uk-navbar-item, .tm-lower-navbar .uk-navbar-toggle {
-      min-height: 40px;
-      height: 40px;
-    }
-    .tm-lower-navbar .uk-navbar-nav > li > a::before {
-      bottom: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/uikit.min.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/css/uikit-theme.css" type="text/css" />
   
   <!-- place globally-included stylesheet content here -->
 <style>
@@ -66,8 +66,8 @@
 
 
   <!-- Custom JS -->
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
+  <script src="/assets/js/uikit.min.js"></script>
+  <script src="/assets/js/uikit-icons.min.js"></script>
 
   <!-- place globally-included scripts here -->
 
@@ -88,7 +88,47 @@
 
 
 
-<div class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed" uk-sticky>
+<div id="navbar" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed uk-light" uk-sticky>
+
+  <div id="alerts">
+    
+    
+      <div class="uk-alert-primary uk-margin-remove" uk-alert>
+  <p><b>Welcome to the new LIS website!</b> The old website can be found at <a href="https://legacy.legumeinfo.org/" target="_blank">legacy.legumeinfo.org</a>. Click the bell (<span uk-icon="bell"></span>) in the navigation bar to toggle this alert.</p>
+</div>
+
+    
+  </div>
+
+  <script type="text/javascript">
+
+    // define the cookie key
+    const alertsKey = "lis-navbar-alerts";
+
+    // get the alerts element
+    const alerts = document.getElementById("alerts");
+
+    // define a callback that saves the toggle state
+    function toggleCallback(event) {
+      document.cookie = `${alertsKey}=${event.type};SameSite=Lax;path=/`;
+    }
+
+    // use the callback every time the element is toggled
+    alerts.addEventListener("show", toggleCallback);
+    alerts.addEventListener("hide", toggleCallback);
+
+    // load the element's state
+    const alertsCookie = document.cookie
+      .split('; ')
+      .find(row => row.startsWith(`${alertsKey}=`));
+
+    // hide the alerts if they're supposed to be hidden
+    if (alertsCookie && alertsCookie.split('=')[1].toLowerCase() === "hide") {
+      UIkit.toggle(alerts).toggle();
+    }
+
+  </script>
+
   <div class="uk-container uk-container-expand">
     <nav class="uk-navbar">
       <div class="uk-navbar-left uk-text-truncate">
@@ -116,7 +156,7 @@
         
         
         
-        <li> <a href="/taxa//arachis"> Arachis (Warm-season oilseed crop, indigenous to South America.)</a></li>
+        <li> <a href="/taxa//arachis"> Arachis (Peanut)</a></li>
         
         
         
@@ -146,7 +186,7 @@
         
         
         
-        <li> <a href="/taxa//lupinus"> Lupinus (Several species of lupin grain legumes)</a></li>
+        <li> <a href="/taxa//lupinus"> Lupinus (Lupin grain legumes)</a></li>
         
         
         
@@ -297,7 +337,7 @@
         
         
         
-        <li> <a href="/collections/arachis"> Arachis (Warm-season oilseed crop, indigenous to South America.)</a></li>
+        <li> <a href="/collections/arachis"> Arachis (Peanut)</a></li>
         
         
         
@@ -327,7 +367,7 @@
         
         
         
-        <li> <a href="/collections/lupinus"> Lupinus (Several species of lupin grain legumes)</a></li>
+        <li> <a href="/collections/lupinus"> Lupinus (Lupin grain legumes)</a></li>
         
         
         
@@ -399,7 +439,7 @@
         
         <li><a href="https://dscensor.legumeinfo.org/">DSCensor Data Overviews</a></li>
         
-        <li><a href="https://legumeinfo.org/gcv2">Genome Context Viewer</a></li>
+        <li><a href="https://gcv.legumeinfo.org/">Genome Context Viewer</a></li>
         
         <li><a href="https://zzbrowse.legumeinfo.org/">ZZBrowse GWAS/QTL</a></li>
         
@@ -439,6 +479,12 @@
         
 
         </ul>
+        
+        
+        <ul class="uk-navbar-nav">
+          <li><a class="tm-no-underline" title="Toggle alerts" uk-toggle="target: #alerts; animation: uk-animation-fade"><span uk-icon="bell"></span></a></li>
+        </ul>
+        
       </div>
     </nav>
     <nav class="uk-navbar tm-lower-navbar">
@@ -454,7 +500,7 @@
         
         
         
-        <li> <a href="/taxa//arachis"> Arachis (Warm-season oilseed crop, indigenous to South America.)</a></li>
+        <li> <a href="/taxa//arachis"> Arachis (Peanut)</a></li>
         
         
         
@@ -484,7 +530,7 @@
         
         
         
-        <li> <a href="/taxa//lupinus"> Lupinus (Several species of lupin grain legumes)</a></li>
+        <li> <a href="/taxa//lupinus"> Lupinus (Lupin grain legumes)</a></li>
         
         
         
@@ -635,7 +681,7 @@
         
         
         
-        <li> <a href="/collections/arachis"> Arachis (Warm-season oilseed crop, indigenous to South America.)</a></li>
+        <li> <a href="/collections/arachis"> Arachis (Peanut)</a></li>
         
         
         
@@ -665,7 +711,7 @@
         
         
         
-        <li> <a href="/collections/lupinus"> Lupinus (Several species of lupin grain legumes)</a></li>
+        <li> <a href="/collections/lupinus"> Lupinus (Lupin grain legumes)</a></li>
         
         
         
@@ -737,7 +783,7 @@
         
         <li><a href="https://dscensor.legumeinfo.org/">DSCensor Data Overviews</a></li>
         
-        <li><a href="https://legumeinfo.org/gcv2">Genome Context Viewer</a></li>
+        <li><a href="https://gcv.legumeinfo.org/">Genome Context Viewer</a></li>
         
         <li><a href="https://zzbrowse.legumeinfo.org/">ZZBrowse GWAS/QTL</a></li>
         
@@ -805,13 +851,9 @@
 
 
 
-
-
-
-
-
-<div class="tm-main uk-section uk-section-default">
-  <div class="uk-container uk-container-small uk-position-relative">
+<!-- NOTE: putting content between the left menu and tm-main blocks will break CSS selectors -->
+<div class="tm-main uk-section uk-section-default uk-flex">
+  <div class="uk-container uk-width-1-1">
     <article class="uk-article">
   <h1 class="uk-article-title">Tepary bean genomes added to LIS</h1>
   <p class="uk-article-meta">Posted by Sam Hokin on 01 Oct 2021.</p>
@@ -823,7 +865,14 @@ The cultivated accession has been added as the primary representative of the spe
 </article>
 
   </div>
+
+  
+
 </div>
+
+</body>
+</html>
+
 
 </body>
 </html>
